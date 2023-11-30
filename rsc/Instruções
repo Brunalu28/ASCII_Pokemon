@@ -1,0 +1,12 @@
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Instruções:
+- Inicialmente você irá escolher o seu Pokémon para a batalha;
+- Escolha em seguida o Pokémon adversário;
+- Após o inicio da batalha, em cada rodada você vai escolher o ataque do seu Pokémon;
+- O ataque do Pokémon adversário é escolhido aleatóriamente;
+- O Pokémon que estiver com pontos de vida igual a zero perde e seu adversário vence.
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
