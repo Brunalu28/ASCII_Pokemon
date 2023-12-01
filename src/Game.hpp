@@ -19,7 +19,7 @@ public:
     static void run()
     {
         SpriteBuffer buffer(250, 57);
-        Fase1 fase1("Fase 1", Sprite("rsc/mapa1.img"));
+        Fase1 fase1("Fase 1", Sprite("../rsc/mapa1.img"));
 
         fase1.init();
         int ret1 = fase1.run(buffer);

@@ -8,14 +8,14 @@
 
 void Fase1::init()
 {
-    jogador = new Jogador(ObjetoDeJogo("Jogador", SpriteAnimado("rsc/Personagem.anm", 2), 46, 80), "Ash");
+    jogador = new Jogador(ObjetoDeJogo("Jogador", SpriteAnimado("../rsc/Personagem.anm", 2), 20, 20), "Ash");
     objs.push_back(jogador);
 
-    cactos[0] = new ObjetoDeJogo("Cacto 1", Sprite("/rsc/cacto1.img"), 2, 10);
+    cactos[0] = new ObjetoDeJogo("Cacto 1", Sprite("../rsc/cacto1.img"), 2, 10);
     objs.push_back(cactos[0]);
     colisoes.push_back(cactos[0]);
 
-    cactos[1] = new ObjetoDeJogo("Cacto 1", Sprite("/rsc/cacto1.img"), 5, 35);
+    cactos[1] = new ObjetoDeJogo("Cacto 1", Sprite("../rsc/cacto1.img"), 5, 35);
     objs.push_back(cactos[1]);
     colisoes.push_back(cactos[1]);
 }
