@@ -1,5 +1,5 @@
-#ifndef HERO_HPP
-#define HERO_HPP
+#ifndef MAPA_HPP
+#define MAPA_HPP
 
 #include <iostream>
 using std::cout, std::endl;
