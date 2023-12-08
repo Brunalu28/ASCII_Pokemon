@@ -12,7 +12,7 @@ using std::string;
 class Mapa : public ObjetoDeJogo
 {
 public:
-    Mapa(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj) {}
+    Mapa(string nome, const ObjetoDeJogo &obj) : ObjetoDeJogo(obj) {}
     virtual ~Mapa() {}
 
 private:

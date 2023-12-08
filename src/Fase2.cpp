@@ -1,4 +1,4 @@
-#include "Fase1.hpp"
+#include "Fase2.hpp"
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
@@ -6,13 +6,9 @@
 
 #include <iostream>
 
-void Fase1::init()
+void Fase2::init()
 {
     objs.push_back(jogador);
-
-    porta = new ObjetoDeJogo("Porta casa 1", Sprite("../rsc/portaMapa1.img"), 43, 149);
-    objs.push_back(porta);
-    colisoes.push_back(porta);
 
     // cactos[0] = new ObjetoDeJogo("Cacto 1", Sprite("../rsc/cacto1.img"), 2, 10);
     // objs.push_back(cactos[0]);
@@ -23,7 +19,7 @@ void Fase1::init()
     // colisoes.push_back(cactos[1]);
 }
 
-unsigned Fase1::run(SpriteBuffer &screen)
+unsigned Fase2::run(SpriteBuffer &screen)
 {
     std::string ent;
 
@@ -50,9 +46,6 @@ unsigned Fase1::run(SpriteBuffer &screen)
             jogador->moveRight(3);
         else if (ent == "q")
             return Fase::END_GAME;
-        if(jogador->colideCom(*porta)){
-            return FASE_2;
-        }
         if (colideComBloco())
             jogador->moveTo(posL, posC);
 
@@ -66,7 +59,7 @@ unsigned Fase1::run(SpriteBuffer &screen)
     return Fase::END_GAME; // não necessário
 }
 
-bool Fase1::colideComBloco() const
+bool Fase2::colideComBloco() const
 {
     for (auto it = colisoes.begin(); it != colisoes.end(); ++it)
         if (jogador->colideCom(**it))

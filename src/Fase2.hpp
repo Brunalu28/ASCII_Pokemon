@@ -1,5 +1,5 @@
-#ifndef FASE1_HPP
-#define FASE1_HPP
+#ifndef FASE2_HPP
+#define FASE2_HPP
 
 #include <iostream>
 using std::cout, std::endl;
@@ -18,12 +18,12 @@ using std::list;
 #include "Jogador.hpp"
 #include "Mapa.hpp"
 
-class Fase1 : public Fase
+class Fase2 : public Fase
 {
 public:
-    Fase1(string name, const Sprite &bkg, Jogador *const jogador) : Fase(name, bkg), jogador(jogador) {}
-    Fase1(string name, const SpriteAnimado &bkg, Jogador *const jogador) : Fase(name, bkg), jogador(jogador) {}
-    virtual ~Fase1() {}
+    Fase2(string name, const Sprite &bkg, Jogador *const jogador) : Fase(name, bkg), jogador(jogador) {}
+    Fase2(string name, const SpriteAnimado &bkg, Jogador *const jogador) : Fase(name, bkg), jogador(jogador) {}
+    virtual ~Fase2() {}
 
     virtual void init();
     virtual unsigned run(SpriteBuffer &screen);
@@ -32,7 +32,7 @@ public:
 
 private:
     Jogador *const jogador;
-    ObjetoDeJogo *porta;
+    Mapa *mapa1;
 
     list<ObjetoDeJogo *> colisoes;
 };
