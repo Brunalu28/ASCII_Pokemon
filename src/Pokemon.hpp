@@ -12,8 +12,8 @@ using std::string;
 class Pokemon : public ObjetoDeJogo
 {
 public:
-    Pokemon(const ObjetoDeJogo &obj, int vida = 50) : ObjetoDeJogo(obj), vida(vida) {}
-    Pokemon(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){};
+    Pokemon(const ObjetoDeJogo &obj, int vida = 50, string tipo) : ObjetoDeJogo(obj), vida(vida), tipo(tipo) {}
+    // Pokemon(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){};
     virtual ~Pokemon() {}
 
     int getVida() const { return vida; }
