@@ -13,8 +13,9 @@ class Pokemon : public ObjetoDeJogo
 {
 public:
     Pokemon(const ObjetoDeJogo &obj, int vida = 50, string tipo = "Pokemon") : ObjetoDeJogo(obj), vida(vida), tipo(tipo) {}
-    // Pokemon(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){};
     virtual ~Pokemon() {};
+
+    string getTipo() const { return this->tipo; }
 
     int getVida() const { return vida; }
     void sofrerAtaque(int ataque) { vida = (vida - ataque >= 0) ? (vida - ataque) : 0; }
