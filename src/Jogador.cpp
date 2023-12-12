@@ -52,12 +52,12 @@ bool Jogador::removePokemon(const string &tipo)
 
 string Jogador::buscaPokemon(const string &tipo) const
 {
-    for (int i = 0; i < qtdPokemon; ++i)
+    for (int i = 0; i < qtdPokemon; i++)
     {
         if (pokebola[i]->getTipo() == tipo)
         {
             return pokebola[i]->getTipo();
         }
     }
-    return nullptr;
+    return 0;
 }
