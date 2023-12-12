@@ -33,6 +33,9 @@ public:
 private:
     Jogador *const jogador;
     ObjetoDeJogo *porta;
+    ObjetoDeJogo *PokeCards[2];
+    ObjetoDeJogo *flor;
+
 
     list<ObjetoDeJogo *> colisoes;
 };

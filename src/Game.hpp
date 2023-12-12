@@ -21,7 +21,7 @@ public:
 
     static void run()
     {
-        Jogador *jogador = new Jogador(ObjetoDeJogo("Jogador", SpriteAnimado("../rsc/Personagem.anm", 2), 20, 20), "Ash");
+        Jogador *jogador = new Jogador(ObjetoDeJogo("Jogador", SpriteAnimado("../rsc/Personagem.anm", 1), 20, 20), "Ash");
         Pokemon *pikachu = new Pokemon(ObjetoDeJogo("Pikachu", Sprite("../rsc/Pikachu"), 20,15), 50, "eletrico");
         Pokemon *Charmander = new Pokemon(ObjetoDeJogo("Charmander", Sprite("../rsc/Charmander"), 40,40), 50, "fogo");
         Pokemon *Bubassauro = new Pokemon(ObjetoDeJogo("Bubassauro", Sprite("../rsc/Bubassaur"), 50,60), 50,"grama");

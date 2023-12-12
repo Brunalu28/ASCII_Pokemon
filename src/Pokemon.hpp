@@ -12,9 +12,9 @@ using std::string;
 class Pokemon : public ObjetoDeJogo
 {
 public:
-    Pokemon(const ObjetoDeJogo &obj, int vida = 50, string tipo) : ObjetoDeJogo(obj), vida(vida), tipo(tipo) {}
+    Pokemon(const ObjetoDeJogo &obj, int vida = 50, string tipo = "Pokemon") : ObjetoDeJogo(obj), vida(vida), tipo(tipo) {}
     // Pokemon(const ObjetoDeJogo &obj) : ObjetoDeJogo(obj){};
-    virtual ~Pokemon() {}
+    virtual ~Pokemon() {};
 
     int getVida() const { return vida; }
     void sofrerAtaque(int ataque) { vida = (vida - ataque >= 0) ? (vida - ataque) : 0; }
