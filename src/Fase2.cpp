@@ -41,13 +41,13 @@ unsigned Fase2::run(SpriteBuffer &screen)
         int posL = jogador->getPosL(), posC = jogador->getPosC();
 
         if (ent == "w" && jogador->getPosL() > 8)
-            jogador->moveUp(3);
+            jogador->moveUp(5);
         else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 8)
-            jogador->moveDown(3);
+            jogador->moveDown(5);
         else if (ent == "a" && jogador->getPosC() > 5)
-            jogador->moveLeft(3);
+            jogador->moveLeft(5);
         else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 5)
-            jogador->moveRight(3);
+            jogador->moveRight(5);
         else if (ent == "q")
             return Fase::END_GAME;
         if(jogador->colideCom(*pontilhado)){

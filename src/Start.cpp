@@ -51,7 +51,4 @@ unsigned Start::run(SpriteBuffer &screen)
         system("clear");
         show(screen);
     }
-
-    return 0;
-
 }
