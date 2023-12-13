@@ -20,12 +20,12 @@ public:
     void setNome(const string& novoNome) { this->nome = novoNome; }
 
     int getQtdPokemon() const { return this->qtdPokemon; }
-    void setQtdPokemon(int novaQtdPokemon) { this->qtdPokemon = novaQtdPokemon; }
+    void setQtdPokemon(int qtdPokemon) { this->qtdPokemon = qtdPokemon; }
 
     bool adicionaPokemon(Pokemon *novoPokemon);
     bool removePokemon(const string &tipoPokemon);
+    Pokemon* buscaPokemon() const;
 
-    string buscaPokemon(const string &tipo) const;
 
 private:
     string nome;

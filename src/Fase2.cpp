@@ -42,7 +42,7 @@ unsigned Fase2::run(SpriteBuffer &screen)
 
         if (ent == "w" && jogador->getPosL() > 8)
             jogador->moveUp(3);
-        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 12)
+        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 8)
             jogador->moveDown(3);
         else if (ent == "a" && jogador->getPosC() > 5)
             jogador->moveLeft(3);
@@ -50,17 +50,15 @@ unsigned Fase2::run(SpriteBuffer &screen)
             jogador->moveRight(3);
         else if (ent == "q")
             return Fase::END_GAME;
-        if (colideComBloco())
-            jogador->moveTo(posL, posC);
+        if(jogador->colideCom(*pontilhado)){
+            return Fase::FASE_3;
+        }
         if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
             if (jogador->colideCom(*onda)) {
                 PokeCard->ativarObj();
             } else {
                 PokeCard->desativarObj();
             }
-        }
-        if(jogador->colideCom(*pontilhado)){
-            return FASE_3;
         }
 
         // padrão

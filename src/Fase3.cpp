@@ -15,7 +15,7 @@ void Fase3::init()
     colisoes.push_back(PokeCard);
     PokeCard->desativarObj();
 
-    banco = new ObjetoDeJogo("Banco", Sprite("../rsc/banco"), 45, 164);
+    banco = new ObjetoDeJogo("Banco", Sprite("../rsc/banco"), 43, 161);
     objs.push_back(banco);
     
 }
@@ -39,7 +39,7 @@ unsigned Fase3::run(SpriteBuffer &screen)
 
         if (ent == "w" && jogador->getPosL() > 8)
             jogador->moveUp(3);
-        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 12)
+        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 8)
             jogador->moveDown(3);
         else if (ent == "a" && jogador->getPosC() > 5)
             jogador->moveLeft(3);
@@ -47,8 +47,6 @@ unsigned Fase3::run(SpriteBuffer &screen)
             jogador->moveRight(3);
         else if (ent == "q")
             return Fase::END_GAME;
-        if (colideComBloco())
-            jogador->moveTo(posL, posC);
         if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
             if (jogador->colideCom(*banco)) {
                 PokeCard->ativarObj();

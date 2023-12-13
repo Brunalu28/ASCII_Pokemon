@@ -15,6 +15,7 @@ public:
     Pokemon(const ObjetoDeJogo &obj, int vida = 50, string tipo = "Pokemon") : ObjetoDeJogo(obj), vida(vida), tipo(tipo) {}
     virtual ~Pokemon() {};
 
+    string getNome() const { return this->getName(); }
     string getTipo() const { return this->tipo; }
 
     int getVida() const { return vida; }

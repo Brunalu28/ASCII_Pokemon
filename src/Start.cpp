@@ -26,10 +26,8 @@ unsigned Start::run(SpriteBuffer &screen)
         // processando entradas
         if (ent == "1")
         {
-            if(jogador->adicionaPokemon(pikachu) == false)
-            {
-            cout << "deu negado" << endl; 
-            }
+            jogador->adicionaPokemon(pikachu);
+            return Fase::END_GAME;
         }
         else if (ent == "2")
         {
@@ -46,6 +44,7 @@ unsigned Start::run(SpriteBuffer &screen)
             jogador->adicionaPokemon(squirtle);
             return Fase::END_GAME;
         }
+        
         // padrão
         update();
         draw(screen);

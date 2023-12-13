@@ -46,3 +46,15 @@ bool Jogador::removePokemon(const string &tipo)
     }
     return false;
 }
+Pokemon* Jogador::buscaPokemon() const
+{
+    for (int i = qtdPokemon - 1; i >= 0; --i)
+    {
+        if (pokebola[i] != nullptr)
+        {
+            return pokebola[i];
+        }
+    }
+
+    return nullptr;  
+}

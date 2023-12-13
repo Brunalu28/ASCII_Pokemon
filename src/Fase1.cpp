@@ -9,7 +9,7 @@ void Fase1::init()
 {
     objs.push_back(jogador);
 
-    porta = new ObjetoDeJogo("Porta casa 1", Sprite("../rsc/portaMapa1.img"), 43, 149);
+    porta = new ObjetoDeJogo("Porta casa 1", Sprite("../rsc/porta"), 43, 149);
     objs.push_back(porta);
     colisoes.push_back(porta);
 
@@ -49,21 +49,24 @@ unsigned Fase1::run(SpriteBuffer &screen)
         int posL = jogador->getPosL(), posC = jogador->getPosC();
 
         if (ent == "w" && jogador->getPosL() > 8)
-            jogador->moveUp(3);
-        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 12)
-            jogador->moveDown(3);
-        else if (ent == "a" && jogador->getPosC() > 12)
-            jogador->moveLeft(3);
-        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 12)
-            jogador->moveRight(3);
+            jogador->moveUp(5);
+        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 8)
+            jogador->moveDown(5);
+        else if (ent == "a" && jogador->getPosC() > 5)
+            jogador->moveLeft(5);
+        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 5)
+            jogador->moveRight(5);
         else if (ent == "q")
             return Fase::END_GAME;
-        if (colideComBloco()){
-            jogador->moveTo(posL, posC);
+        if(jogador->colideCom(*porta)){
+            return Fase::FASE_2;
         }
         if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
             if (jogador->colideCom(*flor)) {
                 PokeCards[0]->ativarObj();
+                if(ent == "b"){
+                    return Fase::BATALHA;
+                }
             } else {
                 PokeCards[0]->desativarObj();
             }
@@ -74,9 +77,6 @@ unsigned Fase1::run(SpriteBuffer &screen)
             } else {
                 PokeCards[1]->desativarObj();
             }
-        }
-        if(jogador->colideCom(*porta)){
-            return FASE_2;
         }
 
         // padrão
