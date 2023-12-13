@@ -18,15 +18,12 @@ Jogador::~Jogador()
 
 bool Jogador::adicionaPokemon(Pokemon *Pokemon)
 {
-    // Verifica se há espaço na pokebola
     if (qtdPokemon < 4)
     {
         pokebola[qtdPokemon] = Pokemon;
         qtdPokemon++;
         return true;
     }
-
-    // Não há espaço na pokebola
     return false;
 }
 
@@ -48,16 +45,4 @@ bool Jogador::removePokemon(const string &tipo)
         }
     }
     return false;
-}
-
-string Jogador::buscaPokemon(const string &tipo) const
-{
-    for (int i = 0; i < qtdPokemon; i++)
-    {
-        if (pokebola[i]->getTipo() == tipo)
-        {
-            return pokebola[i]->getTipo();
-        }
-    }
-    return 0;
 }

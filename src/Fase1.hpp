@@ -35,7 +35,7 @@ private:
     ObjetoDeJogo *porta;
     ObjetoDeJogo *PokeCards[2];
     ObjetoDeJogo *flor;
-
+    ObjetoDeJogo *degrau;
 
     list<ObjetoDeJogo *> colisoes;
 };

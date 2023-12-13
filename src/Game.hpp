@@ -10,9 +10,10 @@ using std::string;
 #include "ASCII_Engine/Fase.hpp"
 
 #include "Pokemon.hpp"
+#include "Start.hpp"
 #include "Fase1.hpp"
 #include "Fase2.hpp"
-#include "Start.hpp"
+#include "Fase3.hpp"
 
 class Game
 {
@@ -35,6 +36,7 @@ public:
         Fase *start = new Start("Fase inicial", Sprite("../rsc/coverStart"), jogador);
         Fase *fase1 = new Fase1("Mapa 1", Sprite("../rsc/mapa3"), jogador);
         Fase *fase2 = new Fase2("Mapa 2", Sprite("../rsc/mapa5"), jogador);
+        Fase *fase3 = new Fase3("Mapa 3", Sprite("../rsc/mapa6"), jogador);
 
         start->init();
         mapaAtual = start->run(bufferStart);
@@ -45,6 +47,10 @@ public:
             if(mapaAtual == Fase::FASE_2){
                 fase2->init();
                 mapaAtual = fase2->run(buffer);
+            }
+            if(mapaAtual == Fase::FASE_3){
+                fase3->init();
+                mapaAtual = fase3->run(buffer);
             }
         }
     }

@@ -1,4 +1,4 @@
-#include "Fase2.hpp"
+#include "Fase3.hpp"
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
@@ -6,24 +6,21 @@
 
 #include <iostream>
 
-void Fase2::init()
+void Fase3::init()
 {
     objs.push_back(jogador);
 
-    pontilhado = new ObjetoDeJogo("Pontilhado", Sprite("../rsc/pontilhado"), 12, 18);
-    objs.push_back(pontilhado);
-    colisoes.push_back(pontilhado);
-
-    PokeCard = new ObjetoDeJogo("Card 3", Sprite("../rsc/infoSquirtle"), 43, 72);
+    PokeCard = new ObjetoDeJogo("Card 3", Sprite("../rsc/infoPikachu"), 43, 72);
     objs.push_back(PokeCard);
     colisoes.push_back(PokeCard);
     PokeCard->desativarObj();
 
-    onda = new ObjetoDeJogo("Onda", Sprite("../rsc/onda"), 15, 119);
-    objs.push_back(onda);
+    banco = new ObjetoDeJogo("Banco", Sprite("../rsc/banco"), 45, 164);
+    objs.push_back(banco);
+    
 }
 
-unsigned Fase2::run(SpriteBuffer &screen)
+unsigned Fase3::run(SpriteBuffer &screen)
 {
     std::string ent;
 
@@ -53,14 +50,11 @@ unsigned Fase2::run(SpriteBuffer &screen)
         if (colideComBloco())
             jogador->moveTo(posL, posC);
         if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
-            if (jogador->colideCom(*onda)) {
+            if (jogador->colideCom(*banco)) {
                 PokeCard->ativarObj();
             } else {
                 PokeCard->desativarObj();
             }
-        }
-        if(jogador->colideCom(*pontilhado)){
-            return FASE_3;
         }
 
         // padrão
@@ -70,10 +64,10 @@ unsigned Fase2::run(SpriteBuffer &screen)
         show(screen);
     }
 
-    return Fase::END_GAME; 
+    return Fase::END_GAME;
 }
 
-bool Fase2::colideComBloco() const
+bool Fase3::colideComBloco() const
 {
     for (auto it = colisoes.begin(); it != colisoes.end(); ++it)
         if (jogador->colideCom(**it))

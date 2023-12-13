@@ -24,27 +24,35 @@ unsigned Start::run(SpriteBuffer &screen)
         getline(std::cin, ent);
 
         // processando entradas
-
         if (ent == "1")
-            jogador->adicionaPokemon(pikachu);
-            return Fase::END_GAME;
-        if (ent == "2")
+        {
+            if(jogador->adicionaPokemon(pikachu) == false)
+            {
+            cout << "deu negado" << endl; 
+            }
+        }
+        else if (ent == "2")
+        {
             jogador->adicionaPokemon(charmander);
-            cout << jogador->buscaPokemon("fogo");
-            break;
-        if (ent == "3")
+            return Fase::END_GAME;
+        }
+        else if (ent == "3")
+        {
             jogador->adicionaPokemon(bulbassauro);
             return Fase::END_GAME;
-        if (ent == "4")
+        }
+        else if (ent == "4")
+        {
             jogador->adicionaPokemon(squirtle);
             return Fase::END_GAME;
-
+        }
         // padrão
         update();
         draw(screen);
         system("clear");
         show(screen);
     }
-    return Fase::GAME_OVER;
+
+    return 0;
 
 }

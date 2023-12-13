@@ -32,7 +32,9 @@ public:
 
 private:
     Jogador *const jogador;
-    Mapa *mapa1;
+    ObjetoDeJogo *pontilhado;
+    ObjetoDeJogo *onda;
+    ObjetoDeJogo *PokeCard;
 
     list<ObjetoDeJogo *> colisoes;
 };
