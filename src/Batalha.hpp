@@ -24,6 +24,13 @@ public:
     Batalha(string name, const SpriteAnimado &bkg, Jogador *const jogador, Pokemon *const pokemon, Pokemon *const adversario) : Fase(name, bkg), jogador(jogador), pokemon(pokemon), adversario(adversario) {}
     virtual ~Batalha() {}
 
+    Pokemon* getPokemon() const { return pokemon; }
+    void setPokemon(Pokemon *const pokemon) { this->pokemon = pokemon; }
+
+    Pokemon* getAdversario() const { return adversario; }
+    void setAdversario(Pokemon *const adversario) { this->adversario = adversario; }
+
+
     virtual void init();
     virtual unsigned run(SpriteBuffer &screen);
 

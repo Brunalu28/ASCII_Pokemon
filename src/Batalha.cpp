@@ -7,9 +7,9 @@
 
 void Batalha::init()
 {
-    objs.push_back(jogador);
-    objs.push_back(pokemon);
-    objs.push_back(adversario);
+    // objs.push_back(jogador);
+    // objs.push_back(pokemon);
+    // objs.push_back(adversario);
 
     ataques[0] = new ObjetoDeJogo("Card 0", Sprite("../rsc/AtaquesBulbassaur"), 43, 72);
     objs.push_back(ataques[0]);
@@ -53,7 +53,10 @@ unsigned Batalha::run(SpriteBuffer &screen)
         getline(std::cin, ent);
 
         // Jogador escolhe ataque do pokemon
-        if (ent == "1")
+        if (ent == "0")
+        {
+            pokemon->atacar(0, adversario);
+        } else if (ent == "1")
         {
             pokemon->atacar(1, adversario);
         } else if (ent == "2")
@@ -62,13 +65,10 @@ unsigned Batalha::run(SpriteBuffer &screen)
         } else if (ent == "3")
         {
             pokemon->atacar(3, adversario);
-        } else if (ent == "4")
-        {
-            pokemon->atacar(4, adversario);
         } 
 
         // Adversário realiza ataque aleatório
-        int escolhaAdversario = rand() % 4 + 1; 
+        int escolhaAdversario = rand() % 4; 
         adversario->atacar(escolhaAdversario, pokemon);
 
         if (pokemon->getVida() <= 0)
@@ -78,7 +78,7 @@ unsigned Batalha::run(SpriteBuffer &screen)
 
         if (adversario->getVida() <= 0)
         {
-            return Fase::CAPTURA_POKEMON;
+            return Fase::LEVEL_COMPLETE;
         }
 
         // padrão

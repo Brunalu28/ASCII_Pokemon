@@ -39,6 +39,8 @@ public:
         Fase *fase1 = new Fase1("Mapa 1", Sprite("../rsc/mapa3"), jogador);
         Fase *fase2 = new Fase2("Mapa 2", Sprite("../rsc/mapa5"), jogador);
         Fase *fase3 = new Fase3("Mapa 3", Sprite("../rsc/mapa6"), jogador);
+        Fase *batalha = new Batalha("Mapa 3", Sprite("../rsc/mapaBatalha"), jogador, pikachu, Bulbassauro);
+
 
 
         start->init();
@@ -47,12 +49,17 @@ public:
         {
             fase1->init();
             mapaAtual = fase1->run(buffer);
-
             if(mapaAtual == Fase::FASE_2){
                 fase2->init();
                 mapaAtual = fase2->run(buffer);
             } else if (mapaAtual == Fase::OP_BULBASSAURO){
-                Fase *batalha = new Batalha("Mapa 3", Sprite("../rsc/mapaBatalha"), jogador, jogador->buscaPokemon(), Bulbassauro);
+                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
+                static_cast<Batalha*>(batalha)->setAdversario(Bulbassauro);
+                batalha->init();
+                mapaAtual = batalha->run(buffer);
+            } else if (mapaAtual == Fase::OP_CHARMANDER){
+                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
+                static_cast<Batalha*>(batalha)->setAdversario(Charmander);
                 batalha->init();
                 mapaAtual = batalha->run(buffer);
             }
@@ -60,8 +67,15 @@ public:
             if(mapaAtual == Fase::FASE_3){
                 fase3->init();
                 mapaAtual = fase3->run(buffer);
-            } else if (mapaAtual == Fase::OP_CHARMANDER){
-                Fase *batalha = new Batalha("Mapa 3", Sprite("../rsc/mapaBatalha"), jogador, jogador->buscaPokemon(), Charmander);
+                if (mapaAtual == Fase::OP_PIKACHU){
+                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
+                static_cast<Batalha*>(batalha)->setAdversario(pikachu);
+                batalha->init();
+                mapaAtual = batalha->run(buffer);
+                }
+            }   else if (mapaAtual == Fase::OP_SQUIRTLE){
+                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
+                static_cast<Batalha*>(batalha)->setAdversario(Squirtle);
                 batalha->init();
                 mapaAtual = batalha->run(buffer);
             }

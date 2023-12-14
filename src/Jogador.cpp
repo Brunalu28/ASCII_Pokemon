@@ -27,11 +27,11 @@ bool Jogador::adicionaPokemon(Pokemon *Pokemon)
     return false;
 }
 
-bool Jogador::removePokemon(const string &tipo)
+bool Jogador::removePokemon(const string &nome)
 {
     for (int i = 0; i < qtdPokemon; i++)
     {
-        if (pokebola[i]->getTipo() == tipo)
+        if (pokebola[i]->getNome() == nome)
         {
             delete pokebola[i];
 

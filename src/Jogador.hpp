@@ -23,7 +23,7 @@ public:
     void setQtdPokemon(int qtdPokemon) { this->qtdPokemon = qtdPokemon; }
 
     bool adicionaPokemon(Pokemon *novoPokemon);
-    bool removePokemon(const string &tipoPokemon);
+    bool removePokemon(const string &nome);
     Pokemon* buscaPokemon() const;
 
 

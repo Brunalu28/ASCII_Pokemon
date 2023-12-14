@@ -25,7 +25,7 @@ void Pokemon::atacar(int indiceAtaque, Pokemon *adversario)
         break;
     }
 
-    if (indiceAtaque >= 1 && indiceAtaque <= ataquesTipo->size())
+    if (indiceAtaque >= 0 && indiceAtaque < ataquesTipo->size())
     {
         int dano = (*ataquesTipo)[indiceAtaque];
         cout << "Ataque do tipo " << tipo << ": Dano = " << dano << endl;

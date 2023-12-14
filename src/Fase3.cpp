@@ -22,7 +22,7 @@ void Fase3::init()
 
 unsigned Fase3::run(SpriteBuffer &screen)
 {
-    std::string ent;
+    std::string ent, batallhar;
 
     // padrão
     draw(screen);
@@ -49,6 +49,10 @@ unsigned Fase3::run(SpriteBuffer &screen)
             return Fase::END_GAME;
         if (jogador->colideCom(*banco)) {
             PokeCard->ativarObj();
+            getline(std::cin, batallhar);
+            if(batallhar == "x"){
+                return Fase::OP_PIKACHU;
+            }
         } else {
             PokeCard->desativarObj();
         }

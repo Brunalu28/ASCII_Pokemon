@@ -25,7 +25,7 @@ void Fase2::init()
 
 unsigned Fase2::run(SpriteBuffer &screen)
 {
-    std::string ent;
+    std::string ent, batallhar;
 
     // padrão
     draw(screen);
@@ -55,6 +55,10 @@ unsigned Fase2::run(SpriteBuffer &screen)
         }
         if (jogador->colideCom(*onda)) {
             PokeCard->ativarObj();
+            getline(std::cin, batallhar);
+            if(batallhar == "x"){
+                return Fase::OP_SQUIRTLE;
+            }
         } else {
             PokeCard->desativarObj();
         }
