@@ -53,12 +53,10 @@ unsigned Fase2::run(SpriteBuffer &screen)
         if(jogador->colideCom(*pontilhado)){
             return Fase::FASE_3;
         }
-        if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
-            if (jogador->colideCom(*onda)) {
-                PokeCard->ativarObj();
-            } else {
-                PokeCard->desativarObj();
-            }
+        if (jogador->colideCom(*onda)) {
+            PokeCard->ativarObj();
+        } else {
+            PokeCard->desativarObj();
         }
 
         // padrão

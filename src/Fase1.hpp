@@ -32,6 +32,7 @@ public:
 
 private:
     Jogador *const jogador;
+    Pokemon *charmander;
     ObjetoDeJogo *porta;
     ObjetoDeJogo *PokeCards[2];
     ObjetoDeJogo *flor;

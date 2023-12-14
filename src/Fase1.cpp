@@ -33,7 +33,7 @@ void Fase1::init()
 
 unsigned Fase1::run(SpriteBuffer &screen)
 {
-    std::string ent;
+    std::string ent, batallhar;
 
     // padrão
     draw(screen);
@@ -48,35 +48,36 @@ unsigned Fase1::run(SpriteBuffer &screen)
         // processando entradas
         int posL = jogador->getPosL(), posC = jogador->getPosC();
 
-        if (ent == "w" && jogador->getPosL() > 8)
+        if (ent == "w" && jogador->getPosL() > 6)
             jogador->moveUp(5);
-        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 8)
+        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 6)
             jogador->moveDown(5);
-        else if (ent == "a" && jogador->getPosC() > 5)
+        else if (ent == "a" && jogador->getPosC() > 10)
             jogador->moveLeft(5);
-        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 5)
+        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 6)
             jogador->moveRight(5);
         else if (ent == "q")
             return Fase::END_GAME;
         if(jogador->colideCom(*porta)){
             return Fase::FASE_2;
         }
-        if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
-            if (jogador->colideCom(*flor)) {
-                PokeCards[0]->ativarObj();
-                if(ent == "b"){
-                    return Fase::BATALHA;
-                }
-            } else {
-                PokeCards[0]->desativarObj();
+        if (jogador->colideCom(*flor)) {
+            PokeCards[0]->ativarObj();
+            getline(std::cin, batallhar);
+            if(batallhar == "x"){
+                return Fase::OP_BULBASSAURO;
             }
-        } 
-        if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
-            if (jogador->colideCom(*degrau)) {
-                PokeCards[1]->ativarObj();
-            } else {
-                PokeCards[1]->desativarObj();
+        } else {
+            PokeCards[0]->desativarObj();
+        }
+        if (jogador->colideCom(*degrau)) {
+            PokeCards[1]->ativarObj();
+            getline(std::cin, batallhar);
+            if(batallhar == "x"){
+                return Fase::OP_CHARMANDER;
             }
+        } else {
+            PokeCards[1]->desativarObj();
         }
 
         // padrão

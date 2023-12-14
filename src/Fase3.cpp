@@ -47,12 +47,10 @@ unsigned Fase3::run(SpriteBuffer &screen)
             jogador->moveRight(5);
         else if (ent == "q")
             return Fase::END_GAME;
-        if (posL != jogador->getPosL() || posC != jogador->getPosC()) {
-            if (jogador->colideCom(*banco)) {
-                PokeCard->ativarObj();
-            } else {
-                PokeCard->desativarObj();
-            }
+        if (jogador->colideCom(*banco)) {
+            PokeCard->ativarObj();
+        } else {
+            PokeCard->desativarObj();
         }
 
         // padrão
