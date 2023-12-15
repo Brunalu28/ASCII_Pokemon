@@ -43,8 +43,6 @@ private:
     ObjetoDeJogo *ataques[4];
     ObjetoDeJogo *vida[2];
 
-    list<ObjetoDeJogo *> colisoes;
-
 };
 
 #endif
