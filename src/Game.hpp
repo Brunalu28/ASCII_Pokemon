@@ -16,6 +16,7 @@ using std::string;
 #include "Fase3.hpp"
 #include "Batalha.hpp"
 #include "FaseCaptura.hpp"
+#include "FaseFim.hpp"
 
 
 class Game
@@ -43,6 +44,7 @@ public:
         Batalha *batalha = new Batalha("Mapa 4", Sprite("../rsc/mapaBatalha"), jogador);
         batalha->init();
         FaseCaptura *captura = new FaseCaptura("Captura Pokemon", Sprite("../rsc/mapaBatalha"));
+        FaseFim *fim = new FaseFim("Fim do Jogo", Sprite("../rsc/mapaBatalha"));
 
 
         start->init();
@@ -62,6 +64,9 @@ public:
                 if(mapaAtual == Fase::CAPTURA_POKEMON){
                     captura->init();
                     mapaAtual = captura->run(buffer);
+                } else if(mapaAtual == Fase::GAME_OVER){
+                    fim->init();
+                    mapaAtual = fim->run(buffer);
                 }
             } else if (mapaAtual == Fase::OP_CHARMANDER){
                 batalha->setPokemon(*(jogador->buscaPokemon()));
@@ -70,6 +75,9 @@ public:
                 if(mapaAtual == Fase::CAPTURA_POKEMON){
                     captura->init();
                     mapaAtual = captura->run(buffer);
+                } else if(mapaAtual == Fase::GAME_OVER){
+                    fim->init();
+                    mapaAtual = fim->run(buffer);
                 }
             }
             if(mapaAtual == Fase::FASE_3){
@@ -82,7 +90,10 @@ public:
                     if(mapaAtual == Fase::CAPTURA_POKEMON){
                         captura->init();
                         mapaAtual = captura->run(buffer);
-                    }
+                    } else if(mapaAtual == Fase::GAME_OVER){
+                        fim->init();
+                        mapaAtual = fim->run(buffer);
+                }
                 }
             } else if (mapaAtual == Fase::OP_SQUIRTLE){
                 batalha->setPokemon(*(jogador->buscaPokemon()));
@@ -91,6 +102,9 @@ public:
                 if(mapaAtual == Fase::CAPTURA_POKEMON){
                     captura->init();
                     mapaAtual = captura->run(buffer);
+                } else if(mapaAtual == Fase::GAME_OVER){
+                    fim->init();
+                    mapaAtual = fim->run(buffer);
                 }
             }
         }
