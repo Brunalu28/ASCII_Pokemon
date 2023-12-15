@@ -2,7 +2,6 @@
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
-#include "Mapa.hpp"
 
 #include <iostream>
 
@@ -15,7 +14,7 @@ void Fase3::init()
     colisoes.push_back(PokeCard);
     PokeCard->desativarObj();
 
-    banco = new ObjetoDeJogo("Banco", Sprite("../rsc/banco"), 43, 161);
+    banco = new ObjetoDeJogo("Banco", Sprite("../rsc/banco"), 44, 160);
     objs.push_back(banco);
     
 }

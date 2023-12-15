@@ -29,10 +29,8 @@ public:
 
 private:
     Jogador *jogador;
-    Pokemon *pikachu;
-    Pokemon *charmander;
-    Pokemon *bulbassauro;
-    Pokemon *squirtle;  
+    ObjetoDeJogo *tituloCover;
+    ObjetoDeJogo *instrucoes;
 };
 
 #endif

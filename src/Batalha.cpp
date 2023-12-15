@@ -7,25 +7,36 @@
 
 void Batalha::init()
 {
-    // objs.push_back(jogador);
-    // objs.push_back(pokemon);
-    // objs.push_back(adversario);
 
-    ataques[0] = new ObjetoDeJogo("Card 0", Sprite("../rsc/AtaquesBulbassaur"), 43, 72);
+    pokemon = new Pokemon(ObjetoDeJogo("Bulbassauro", Sprite("../rsc/Bulbassaur"), 5,20), 50,Pokemon::GRAMA);
+    adversario = new Pokemon(ObjetoDeJogo("Squirtle", Sprite("../rsc/Squirtle"), 5,120), 50, Pokemon::AGUA);
+
+    objs.push_back(pokemon);
+    colisoes.push_back(pokemon);
+    objs.push_back(adversario);
+    colisoes.push_back(adversario);
+
+    ataques[0] = new ObjetoDeJogo("Card 0", Sprite("../rsc/AtaquesBulbassaur"), 30, 50);
     objs.push_back(ataques[0]);
     ataques[0]->desativarObj();
 
-    ataques[1] = new ObjetoDeJogo("Card 1", Sprite("../rsc/AtaquesCharmander"), 43, 72);
+    ataques[1] = new ObjetoDeJogo("Card 1", Sprite("../rsc/AtaquesCharmander"), 30, 50);
     objs.push_back(ataques[1]);
     ataques[1]->desativarObj();
 
-    ataques[2] = new ObjetoDeJogo("Card 2", Sprite("../rsc/AtaquesPikachu"), 43, 72);
+    ataques[2] = new ObjetoDeJogo("Card 2", Sprite("../rsc/AtaquesPikachu"), 30, 50);
     objs.push_back(ataques[2]);
     ataques[2]->desativarObj();
 
-    ataques[3] = new ObjetoDeJogo("Card 3", Sprite("../rsc/AtaquesSquirtle"), 43, 72);
+    ataques[3] = new ObjetoDeJogo("Card 3", Sprite("../rsc/AtaquesSquirtle"), 30, 50);
     objs.push_back(ataques[3]);
     ataques[3]->desativarObj();
+    
+    vida[0] = new ObjetoDeJogo("Life Value", TextSprite("VIDA: "), 2, 14);
+    objs.push_back(vida[0]);
+
+    vida[1] = new ObjetoDeJogo("Life Value", TextSprite("VIDA: "), 2, 180);
+    objs.push_back(vida[1]);
 }
 
 unsigned Batalha::run(SpriteBuffer &screen)
@@ -37,18 +48,21 @@ unsigned Batalha::run(SpriteBuffer &screen)
     system("clear");
     show(screen);
 
-    while (true)
-    {
-        if(pokemon->getTipo() == Pokemon::GRAMA){
+    *vida[0] = ObjetoDeJogo("Life Value", TextSprite("VIDA: " + std::to_string(pokemon->getVida())), 2, 14);
+    *vida[1] = ObjetoDeJogo("Life Value", TextSprite("VIDA: " + std::to_string(adversario->getVida())), 2, 150);
+
+    if(pokemon->getTipo() == Pokemon::GRAMA){
             ataques[0]->ativarObj();
-        } else if(pokemon->getTipo() == Pokemon::GRAMA){
+        } else if(pokemon->getTipo() == Pokemon::FOGO){
             ataques[1]->ativarObj();
-        } else if(pokemon->getTipo() == Pokemon::GRAMA){
+        } else if(pokemon->getTipo() == Pokemon::ELETRICO){
             ataques[2]->ativarObj();
-        } else if(pokemon->getTipo() == Pokemon::GRAMA){
+        } else if(pokemon->getTipo() == Pokemon::AGUA){
             ataques[3]->ativarObj();
         }
 
+    while (true)
+    {
         // lendo entrada
         getline(std::cin, ent);
 
@@ -71,6 +85,10 @@ unsigned Batalha::run(SpriteBuffer &screen)
         int escolhaAdversario = rand() % 4; 
         adversario->atacar(escolhaAdversario, pokemon);
 
+        *vida[0] = ObjetoDeJogo("Life Value", TextSprite("VIDA: " + std::to_string(pokemon->getVida())), 2, 14);
+        *vida[1] = ObjetoDeJogo("Life Value", TextSprite("VIDA: " + std::to_string(adversario->getVida())), 2, 150);
+
+
         if (pokemon->getVida() <= 0)
         {
             return Fase::GAME_OVER;
@@ -78,7 +96,7 @@ unsigned Batalha::run(SpriteBuffer &screen)
 
         if (adversario->getVida() <= 0)
         {
-            return Fase::LEVEL_COMPLETE;
+            return Fase::CAPTURA_POKEMON;
         }
 
         // padrão
@@ -91,3 +109,12 @@ unsigned Batalha::run(SpriteBuffer &screen)
     return Fase::END_GAME; 
 }
 
+bool Batalha::colideComBloco() const
+{
+    for (auto it = colisoes.begin(); it != colisoes.end(); ++it)
+        if (jogador->colideCom(**it))
+        {
+            return true;
+        }
+    return false;
+}

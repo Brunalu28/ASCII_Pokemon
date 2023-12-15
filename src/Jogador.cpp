@@ -48,13 +48,13 @@ bool Jogador::removePokemon(const string &nome)
 }
 Pokemon* Jogador::buscaPokemon() const
 {
-    for (int i = qtdPokemon - 1; i >= 0; i--)
-    {
-        if (pokebola[i] != nullptr)
-        {
-            return pokebola[i];
-        }
-    }
+    // for (int i = qtdPokemon - 1; i >= 0; i--)
+    // {
+    //     if (pokebola[i] != nullptr)
+    //     {
+            return pokebola[0];
+    //     }
+    // }
 
     return nullptr;  
 }

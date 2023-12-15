@@ -2,7 +2,6 @@
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
-#include "Mapa.hpp"
 
 #include <iostream>
 

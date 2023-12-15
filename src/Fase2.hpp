@@ -16,7 +16,6 @@ using std::list;
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
-#include "Mapa.hpp"
 
 class Fase2 : public Fase
 {

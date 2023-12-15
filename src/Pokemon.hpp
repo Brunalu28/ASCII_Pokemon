@@ -23,10 +23,10 @@ public:
     int getVida() const { return vida; }
     Tipo getTipo() const { return tipo; }
 
-    static const std::array<int, 4> ataquesFogo;
-    static const std::array<int, 4> ataquesAgua;
-    static const std::array<int, 4> ataquesGrama;
-    static const std::array<int, 4> ataquesEletrico;
+    static const array<int, 4> ataquesFogo;
+    static const array<int, 4> ataquesAgua;
+    static const array<int, 4> ataquesGrama;
+    static const array<int, 4> ataquesEletrico;
 
     void sofrerAtaque(int ataque) { vida = (vida - ataque >= 0) ? (vida - ataque) : 0; }
     void atacar(int ataque, Pokemon *adversario);

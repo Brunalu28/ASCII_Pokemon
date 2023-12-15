@@ -15,6 +15,7 @@ using std::string;
 #include "Fase2.hpp"
 #include "Fase3.hpp"
 #include "Batalha.hpp"
+#include "FaseCaptura.hpp"
 
 
 class Game
@@ -26,12 +27,12 @@ public:
     static void run()
     {
         Jogador *jogador = new Jogador(ObjetoDeJogo("Jogador", SpriteAnimado("../rsc/Personagem.anm", 5), 20, 65), "Ash");
-        Pokemon *pikachu = new Pokemon(ObjetoDeJogo("Pikachu", Sprite("../rsc/Pikachu"), 20,15), 50, Pokemon::ELETRICO);
-        Pokemon *Charmander = new Pokemon(ObjetoDeJogo("Charmander", Sprite("../rsc/Charmander"), 40,40), 50, Pokemon::FOGO);
-        Pokemon *Bulbassauro = new Pokemon(ObjetoDeJogo("Bulbassauro", Sprite("../rsc/Bulbassaur"), 50,60), 50,Pokemon::GRAMA);
-        Pokemon *Squirtle = new Pokemon(ObjetoDeJogo("Squirtle", Sprite("../rsc/Squirtle"), 70,75), 50, Pokemon::AGUA);
-        SpriteBuffer buffer(193, 52);
-        SpriteBuffer bufferStart(154, 38);
+        Pokemon *pikachu = new Pokemon(ObjetoDeJogo("Pikachu", Sprite("../rsc/Pikachu"), 5,180), 50, Pokemon::ELETRICO);
+        Pokemon *Charmander = new Pokemon(ObjetoDeJogo("Charmander", Sprite("../rsc/Charmander"), 5,180), 50, Pokemon::FOGO);
+        Pokemon *Bulbassauro = new Pokemon(ObjetoDeJogo("Bulbassauro", Sprite("../rsc/Bulbassaur"),10,180), 50,Pokemon::GRAMA);
+        Pokemon *Squirtle = new Pokemon(ObjetoDeJogo("Squirtle", Sprite("../rsc/Squirtle"), 10,150), 50, Pokemon::AGUA);
+        SpriteBuffer buffer(350, 52);
+        SpriteBuffer bufferStart(170, 38);
 
         unsigned mapaAtual;
 
@@ -39,45 +40,58 @@ public:
         Fase *fase1 = new Fase1("Mapa 1", Sprite("../rsc/mapa3"), jogador);
         Fase *fase2 = new Fase2("Mapa 2", Sprite("../rsc/mapa5"), jogador);
         Fase *fase3 = new Fase3("Mapa 3", Sprite("../rsc/mapa6"), jogador);
-        Fase *batalha = new Batalha("Mapa 3", Sprite("../rsc/mapaBatalha"), jogador, pikachu, Bulbassauro);
-
+        Batalha *batalha = new Batalha("Mapa 4", Sprite("../rsc/mapaBatalha"), jogador);
+        batalha->init();
+        FaseCaptura *captura = new FaseCaptura("Captura Pokemon", Sprite("../rsc/mapaBatalha"));
 
 
         start->init();
-        mapaAtual = start->run(bufferStart);
+        mapaAtual = start->run(buffer);
         if (mapaAtual == Fase::END_GAME)
         {
             fase1->init();
             mapaAtual = fase1->run(buffer);
+
             if(mapaAtual == Fase::FASE_2){
                 fase2->init();
                 mapaAtual = fase2->run(buffer);
             } else if (mapaAtual == Fase::OP_BULBASSAURO){
-                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
-                static_cast<Batalha*>(batalha)->setAdversario(Bulbassauro);
-                batalha->init();
+                batalha->setPokemon(*(jogador->buscaPokemon()));
+                batalha->setAdversario(*(Bulbassauro));
                 mapaAtual = batalha->run(buffer);
+                if(mapaAtual == Fase::CAPTURA_POKEMON){
+                    captura->init();
+                    mapaAtual = captura->run(buffer);
+                }
             } else if (mapaAtual == Fase::OP_CHARMANDER){
-                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
-                static_cast<Batalha*>(batalha)->setAdversario(Charmander);
-                batalha->init();
+                batalha->setPokemon(*(jogador->buscaPokemon()));
+                batalha->setAdversario(*(Charmander));
                 mapaAtual = batalha->run(buffer);
+                if(mapaAtual == Fase::CAPTURA_POKEMON){
+                    captura->init();
+                    mapaAtual = captura->run(buffer);
+                }
             }
-
             if(mapaAtual == Fase::FASE_3){
                 fase3->init();
                 mapaAtual = fase3->run(buffer);
                 if (mapaAtual == Fase::OP_PIKACHU){
-                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
-                static_cast<Batalha*>(batalha)->setAdversario(pikachu);
-                batalha->init();
-                mapaAtual = batalha->run(buffer);
+                    batalha->setPokemon(*(jogador->buscaPokemon()));
+                    batalha->setAdversario(*(pikachu));
+                    mapaAtual = batalha->run(buffer);
+                    if(mapaAtual == Fase::CAPTURA_POKEMON){
+                        captura->init();
+                        mapaAtual = captura->run(buffer);
+                    }
                 }
-            }   else if (mapaAtual == Fase::OP_SQUIRTLE){
-                static_cast<Batalha*>(batalha)->setPokemon(jogador->buscaPokemon());
-                static_cast<Batalha*>(batalha)->setAdversario(Squirtle);
-                batalha->init();
+            } else if (mapaAtual == Fase::OP_SQUIRTLE){
+                batalha->setPokemon(*(jogador->buscaPokemon()));
+                batalha->setAdversario(*(Squirtle));
                 mapaAtual = batalha->run(buffer);
+                if(mapaAtual == Fase::CAPTURA_POKEMON){
+                    captura->init();
+                    mapaAtual = captura->run(buffer);
+                }
             }
         }
     }
