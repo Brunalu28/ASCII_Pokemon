@@ -2,6 +2,8 @@
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
+#include "ASCII_Engine/Sound.hpp"
+
 
 #include <iostream>
 
@@ -20,10 +22,15 @@ void Fase2::init()
 
     onda = new ObjetoDeJogo("Onda", Sprite("../rsc/onda"), 15, 119);
     objs.push_back(onda);
+
+    trilhaSonora = new Sound("../rsc/msc.mp3");
+
 }
 
 unsigned Fase2::run(SpriteBuffer &screen)
 {
+    trilhaSonora->playloop();
+
     std::string ent, batallhar;
 
     // padrão
@@ -45,7 +52,7 @@ unsigned Fase2::run(SpriteBuffer &screen)
             jogador->moveDown(5);
         else if (ent == "a" && jogador->getPosC() > 5)
             jogador->moveLeft(5);
-        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 5)
+        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 15)
             jogador->moveRight(5);
         else if (ent == "q")
             return Fase::END_GAME;
@@ -69,6 +76,7 @@ unsigned Fase2::run(SpriteBuffer &screen)
         show(screen);
     }
 
+    trilhaSonora->stop();
     return Fase::END_GAME; 
 }
 

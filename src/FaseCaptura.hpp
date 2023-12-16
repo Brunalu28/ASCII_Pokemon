@@ -14,7 +14,6 @@ public:
 	virtual unsigned run(SpriteBuffer &screen);
 
 private:
-    ObjetoDeJogo *pokebola;
     ObjetoDeJogo *Capturado;
 };
 

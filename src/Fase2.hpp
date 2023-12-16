@@ -11,6 +11,7 @@ using std::string;
 using std::list;
 
 #include "ASCII_Engine/Fase.hpp"
+#include "ASCII_Engine/Sound.hpp"
 #include <string>
 #include <list>
 
@@ -34,6 +35,7 @@ private:
     ObjetoDeJogo *pontilhado;
     ObjetoDeJogo *onda;
     ObjetoDeJogo *PokeCard;
+    Sound *trilhaSonora;
 
     list<ObjetoDeJogo *> colisoes;
 };

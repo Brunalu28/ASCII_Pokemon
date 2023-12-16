@@ -2,11 +2,9 @@
 
 void FaseCaptura::init()
 {
-    Capturado = new ObjetoDeJogo("Pokebola", Sprite("../rsc/PokemonCapturado"), 2, 15);
+    Capturado = new ObjetoDeJogo("Pokebola", Sprite("../rsc/PokemonCapturado"), 10, 10);
     objs.push_back(Capturado);
 
-    pokebola = new ObjetoDeJogo("Pokebola", Sprite("../rsc/PokebolaAnimada"), 20, 70);
-    objs.push_back(pokebola);
 }
 
 unsigned FaseCaptura::run(SpriteBuffer &screen)
@@ -17,8 +15,12 @@ unsigned FaseCaptura::run(SpriteBuffer &screen)
 	draw(screen);
 	system("clear");
 	show(screen);
+	while(true){
+        getline(std::cin, ent);
+
+		if (ent == "q"){
+			return Fase::LEVEL_COMPLETE;
+		}
+	}
 	
-	
-	
-	return Fase::END_GAME;
 }

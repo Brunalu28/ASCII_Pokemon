@@ -9,6 +9,7 @@ using std::string;
 
 #include "ASCII_Engine/Fase.hpp"
 
+
 #include "Pokemon.hpp"
 #include "Start.hpp"
 #include "Fase1.hpp"
@@ -28,12 +29,12 @@ public:
     static void run()
     {
         Jogador *jogador = new Jogador(ObjetoDeJogo("Jogador", SpriteAnimado("../rsc/Personagem.anm", 5), 20, 65), "Ash");
-        Pokemon *pikachu = new Pokemon(ObjetoDeJogo("Pikachu", Sprite("../rsc/Pikachu"), 5,180), 50, Pokemon::ELETRICO);
-        Pokemon *Charmander = new Pokemon(ObjetoDeJogo("Charmander", Sprite("../rsc/Charmander"), 5,180), 50, Pokemon::FOGO);
-        Pokemon *Bulbassauro = new Pokemon(ObjetoDeJogo("Bulbassauro", Sprite("../rsc/Bulbassaur"),10,180), 50,Pokemon::GRAMA);
-        Pokemon *Squirtle = new Pokemon(ObjetoDeJogo("Squirtle", Sprite("../rsc/Squirtle"), 10,150), 50, Pokemon::AGUA);
-        SpriteBuffer buffer(350, 52);
-        SpriteBuffer bufferStart(170, 38);
+        Pokemon *pikachu = new Pokemon(ObjetoDeJogo("Pikachu", Sprite("../rsc/Pikachu"), 5,100), 50, Pokemon::ELETRICO);
+        Pokemon *Charmander = new Pokemon(ObjetoDeJogo("Charmander", Sprite("../rsc/Charmander"), 5,100), 50, Pokemon::FOGO);
+        Pokemon *Bulbassauro = new Pokemon(ObjetoDeJogo("Bulbassauro", Sprite("../rsc/Bulbassaur"),10,100), 50,Pokemon::GRAMA);
+        Pokemon *Squirtle = new Pokemon(ObjetoDeJogo("Squirtle", Sprite("../rsc/Squirtle"), 5,100), 50, Pokemon::AGUA);
+        SpriteBuffer buffer(200, 53);
+        SpriteBuffer bufferStart(198, 38);
 
         unsigned mapaAtual;
 
@@ -43,9 +44,8 @@ public:
         Fase *fase3 = new Fase3("Mapa 3", Sprite("../rsc/mapa6"), jogador);
         Batalha *batalha = new Batalha("Mapa 4", Sprite("../rsc/mapaBatalha"), jogador);
         batalha->init();
-        FaseCaptura *captura = new FaseCaptura("Captura Pokemon", Sprite("../rsc/mapaBatalha"));
-        FaseFim *fim = new FaseFim("Fim do Jogo", Sprite("../rsc/mapaBatalha"));
-
+        FaseCaptura *captura = new FaseCaptura("Captura Pokemon", Sprite("../rsc/bkgPoke"));
+        FaseFim *fim = new FaseFim("Fim do Jogo", Sprite("../rsc/bkgPoke"));
 
         start->init();
         mapaAtual = start->run(buffer);
@@ -63,10 +63,14 @@ public:
                 mapaAtual = batalha->run(buffer);
                 if(mapaAtual == Fase::CAPTURA_POKEMON){
                     captura->init();
-                    mapaAtual = captura->run(buffer);
+                    mapaAtual = captura->run(bufferStart);
+                    if(mapaAtual == Fase::LEVEL_COMPLETE){
+                        fase1->init();
+                        mapaAtual = fase1->run(buffer);
+                    }
                 } else if(mapaAtual == Fase::GAME_OVER){
                     fim->init();
-                    mapaAtual = fim->run(buffer);
+                    mapaAtual = fim->run(bufferStart);
                 }
             } else if (mapaAtual == Fase::OP_CHARMANDER){
                 batalha->setPokemon(*(jogador->buscaPokemon()));
@@ -74,10 +78,14 @@ public:
                 mapaAtual = batalha->run(buffer);
                 if(mapaAtual == Fase::CAPTURA_POKEMON){
                     captura->init();
-                    mapaAtual = captura->run(buffer);
+                    mapaAtual = captura->run(bufferStart);
+                    if(mapaAtual == Fase::LEVEL_COMPLETE){
+                        fase1->init();
+                        mapaAtual = fase1->run(buffer);
+                    }
                 } else if(mapaAtual == Fase::GAME_OVER){
                     fim->init();
-                    mapaAtual = fim->run(buffer);
+                    mapaAtual = fim->run(bufferStart);
                 }
             }
             if(mapaAtual == Fase::FASE_3){
@@ -89,10 +97,14 @@ public:
                     mapaAtual = batalha->run(buffer);
                     if(mapaAtual == Fase::CAPTURA_POKEMON){
                         captura->init();
-                        mapaAtual = captura->run(buffer);
+                        mapaAtual = captura->run(bufferStart);
+                        if(mapaAtual == Fase::LEVEL_COMPLETE){
+                            fase1->init();
+                            mapaAtual = fase1->run(buffer);
+                        }
                     } else if(mapaAtual == Fase::GAME_OVER){
                         fim->init();
-                        mapaAtual = fim->run(buffer);
+                        mapaAtual = fim->run(bufferStart);
                 }
                 }
             } else if (mapaAtual == Fase::OP_SQUIRTLE){
@@ -101,10 +113,14 @@ public:
                 mapaAtual = batalha->run(buffer);
                 if(mapaAtual == Fase::CAPTURA_POKEMON){
                     captura->init();
-                    mapaAtual = captura->run(buffer);
+                    mapaAtual = captura->run(bufferStart);
+                    if(mapaAtual == Fase::LEVEL_COMPLETE){
+                        fase1->init();
+                        mapaAtual = fase1->run(buffer);
+                    }
                 } else if(mapaAtual == Fase::GAME_OVER){
                     fim->init();
-                    mapaAtual = fim->run(buffer);
+                    mapaAtual = fim->run(bufferStart);
                 }
             }
         }

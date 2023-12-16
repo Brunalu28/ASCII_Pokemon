@@ -2,7 +2,7 @@
 
 void FaseFim::init()
 {
-    fim = new ObjetoDeJogo("FIM", Sprite("../rsc/fimJogo"), 15, 35);
+    fim = new ObjetoDeJogo("FIM", Sprite("../rsc/fimJogo"), 12, 20);
     objs.push_back(fim);
 
 }

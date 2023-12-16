@@ -11,6 +11,7 @@ using std::string;
 using std::list;
 
 #include "ASCII_Engine/Fase.hpp"
+#include "ASCII_Engine/Sound.hpp"
 #include <string>
 #include <list>
 
@@ -42,7 +43,7 @@ private:
     Pokemon *adversario;
     ObjetoDeJogo *ataques[4];
     ObjetoDeJogo *vida[2];
-
+    Sound *trilhaSonora;
 };
 
 #endif

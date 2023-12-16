@@ -2,6 +2,8 @@
 
 #include "Pokemon.hpp"
 #include "Jogador.hpp"
+#include "ASCII_Engine/Sound.hpp"
+
 
 #include <iostream>
 
@@ -28,11 +30,15 @@ void Fase1::init()
     objs.push_back(PokeCards[1]);
     colisoes.push_back(PokeCards[1]);
     PokeCards[1]->desativarObj();
+
+    trilhaSonora = new Sound("../rsc/msc.mp3");
     
 }
 
 unsigned Fase1::run(SpriteBuffer &screen)
 {
+    
+    trilhaSonora->playloop();
     std::string ent, batallhar;
 
     // padrão
@@ -41,8 +47,7 @@ unsigned Fase1::run(SpriteBuffer &screen)
     show(screen);
 
     while (true)
-    {
-        // lendo entrada
+    {        // lendo entrada
         getline(std::cin, ent);
 
         // processando entradas
@@ -50,11 +55,11 @@ unsigned Fase1::run(SpriteBuffer &screen)
 
         if (ent == "w" && jogador->getPosL() > 6)
             jogador->moveUp(5);
-        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 6)
+        else if (ent == "s" && jogador->getPosL() < screen.getAltura() - 5)
             jogador->moveDown(5);
         else if (ent == "a" && jogador->getPosC() > 10)
             jogador->moveLeft(5);
-        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 6)
+        else if (ent == "d" && jogador->getPosC() < screen.getLargura() - jogador->getSprite()->getLargura() - 15)
             jogador->moveRight(5);
         else if (ent == "q")
             return Fase::END_GAME;
@@ -86,7 +91,7 @@ unsigned Fase1::run(SpriteBuffer &screen)
         system("clear");
         show(screen);
     }
-
+    trilhaSonora->stop();
     return Fase::END_GAME; 
 }
 
