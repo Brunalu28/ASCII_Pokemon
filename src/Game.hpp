@@ -91,6 +91,8 @@ public:
                         fim->init();
                         mapaAtual = fim->run(bufferStart);
                     }
+                } else {
+                    break;
                 }
                 if(mapaAtual == Fase::FASE_3){
                     fase3->init();
@@ -128,6 +130,8 @@ public:
                         fim->init();
                         mapaAtual = fim->run(bufferStart);
                     }
+                } else {
+                    break;
                 }
             }
         }
