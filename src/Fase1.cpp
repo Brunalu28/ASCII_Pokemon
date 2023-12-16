@@ -30,15 +30,12 @@ void Fase1::init()
     objs.push_back(PokeCards[1]);
     colisoes.push_back(PokeCards[1]);
     PokeCards[1]->desativarObj();
-
-    trilhaSonora = new Sound("../rsc/msc.mp3");
     
 }
 
 unsigned Fase1::run(SpriteBuffer &screen)
 {
-    
-    trilhaSonora->playloop();
+
     std::string ent, batallhar;
 
     // padrão
@@ -91,7 +88,6 @@ unsigned Fase1::run(SpriteBuffer &screen)
         system("clear");
         show(screen);
     }
-    trilhaSonora->stop();
     return Fase::END_GAME; 
 }
 

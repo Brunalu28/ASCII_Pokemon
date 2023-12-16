@@ -35,8 +35,6 @@ private:
     Jogador *const jogador;
     ObjetoDeJogo *banco;
     ObjetoDeJogo *PokeCard;
-    Sound *trilhaSonora;
-
 
     list<ObjetoDeJogo *> colisoes;
 };

@@ -23,14 +23,10 @@ void Fase2::init()
     onda = new ObjetoDeJogo("Onda", Sprite("../rsc/onda"), 15, 119);
     objs.push_back(onda);
 
-    trilhaSonora = new Sound("../rsc/msc.mp3");
-
 }
 
 unsigned Fase2::run(SpriteBuffer &screen)
 {
-    trilhaSonora->playloop();
-
     std::string ent, batallhar;
 
     // padrão
@@ -75,8 +71,6 @@ unsigned Fase2::run(SpriteBuffer &screen)
         system("clear");
         show(screen);
     }
-
-    trilhaSonora->stop();
     return Fase::END_GAME; 
 }
 

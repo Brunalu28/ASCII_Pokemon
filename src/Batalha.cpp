@@ -38,14 +38,10 @@ void Batalha::init()
     vida[1] = new ObjetoDeJogo("Life Value", TextSprite("VIDA: "), 2, 120);
     objs.push_back(vida[1]);
 
-    trilhaSonora = new Sound("../rsc/msc.mp3");
-
 }
 
 unsigned Batalha::run(SpriteBuffer &screen)
 {
-    trilhaSonora->playloop();
-
     std::string ent;
 
         if(pokemon->getTipo() == Pokemon::GRAMA){

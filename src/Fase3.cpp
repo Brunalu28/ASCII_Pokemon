@@ -18,14 +18,10 @@ void Fase3::init()
     banco = new ObjetoDeJogo("Banco", Sprite("../rsc/banco"), 44, 160);
     objs.push_back(banco);
     
-    trilhaSonora = new Sound("../rsc/msc.mp3");
-
 }
 
 unsigned Fase3::run(SpriteBuffer &screen)
 {
-    trilhaSonora->playloop();
-
     std::string ent, batallhar;
 
     // padrão
@@ -67,7 +63,6 @@ unsigned Fase3::run(SpriteBuffer &screen)
         system("clear");
         show(screen);
     }
-    trilhaSonora->stop();
     return Fase::END_GAME;
 }
 

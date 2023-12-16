@@ -35,7 +35,6 @@ private:
     ObjetoDeJogo *pontilhado;
     ObjetoDeJogo *onda;
     ObjetoDeJogo *PokeCard;
-    Sound *trilhaSonora;
 
     list<ObjetoDeJogo *> colisoes;
 };

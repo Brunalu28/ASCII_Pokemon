@@ -13,10 +13,14 @@ void Start::init()
     instrucoes = new ObjetoDeJogo("instrucoes", Sprite("../rsc/instrucoes"), 10, 35);
     objs.push_back(instrucoes);
     instrucoes->desativarObj();
+
+    trilhaSonora = new Sound("../rsc/msc.mp3");
 }
 
 unsigned Start::run(SpriteBuffer &screen)
 {
+    trilhaSonora->play();
+
     std::string ent;
 
     // padrão
